@@ -1,0 +1,43 @@
+---
+- name: Install and deploy Node.js application
+  hosts: webserver
+  become: true
+  tasks:
+    - name: Update app repo and cache
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        cache_valid_time: 3600
+
+    - name: Install Node.js and npm
+      apt:
+        pkg:
+          - nodejs
+          - npm
+
+    - name: Copy Node.js folder to server
+      copy:
+        src: /home/vishnu/Documents/Devops/Ansible/NodeProjectForAnsiblePlayBookTesting/node-app/nodejs-app-1.0.0.tgz
+        dest: /home/ubuntu/app-1.0.0.tgz
+
+    - name: Unpack Node.js file
+      unarchive:
+        src: /home/ubuntu/app-1.0.0.tgz
+        dest: /home/ubuntu/
+        remote_src: yes
+    - name: Install Dependencies
+      npm: 
+        path: /home/ubuntu/package
+    - name: Start the application 
+      command:
+        chdir: /home/ubuntu/package/app
+        cmd: node server
+      async: 1000
+      poll: 0
+    - name: Ensure the app is running 
+      shell: ps aux | grep node
+      register: app_status
+    - debug: msg={{app_status.stdout_lines}}11
+
+ 
+
