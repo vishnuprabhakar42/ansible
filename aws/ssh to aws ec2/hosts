@@ -3,4 +3,4 @@ ec2-3-94-92-213.compute-1.amazonaws.com
 
 [ec2:vars]
 ansible_ssh_private_key_file=~/.ssh/vishnu45.pem
-ansible_user=git 
+ansible_user=ubuntu
