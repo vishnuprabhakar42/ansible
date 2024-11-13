@@ -1,0 +1,19 @@
+13.235.90.145 ansible_ssh_private_key_file=~/.ssh/Ansible.pem  ansible_user=ubuntu
+13.235.90.121 ansible_ssh_private_key_file=~/.ssh/Ansible.pem  ansible_user=ubuntu
+
+
+
+----------------------OR--------------------------------------------
+#For Digital Ocean platform
+#Doing ssh to droplets
+
+[droplet]
+13.235.90.141
+13.235.90.144
+13.235.90.142
+13.235.90.145
+
+[droplet:vars]
+ansible_ssh_private_key_file=~/.ssh/Ansible.pem
+ansible_user=root
+

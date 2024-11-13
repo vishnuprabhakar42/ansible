@@ -1,0 +1,13 @@
+---
+- name: Configure inginx on web server
+  hosts: webserver
+  become: yes
+  tasks:
+  - name: Install nginx server
+    apt:
+      name: nginx=1.24.0-2ubuntu7.1
+      state: present
+  - name: start nginx server
+    service:
+      name: nginx
+      state: started 
