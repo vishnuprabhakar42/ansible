@@ -9,7 +9,20 @@
         force_apt_get: yes
         cache_valid_time: 3600
 
+
+# - name: Create new linux user for node application 
+#   hosts: webserver
+   
+#   tasks: 
+#     - name: Create linux user 
+#       user:
+#         name: vishnu
+#         comment: vishnu sudo
+#         group: sudo
+
     - name: Install Node.js and npm
+      # become: true   # become allow us to become another user differnt form the user that logged into the machine
+      # become_user: vishnu  # set to user with desired privallage. Default is root
       apt:
         pkg:
           - nodejs
